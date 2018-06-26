@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="FacetManager">
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="hibernate.cfg.xml" value="e262c81f-06d1-4344-a7ed-d1771a084a71" />
+          <unit-entry name="sessionFactory" />
+          <unit-entry name="src:main:webapp:WEB-INF:hibernate.cfg.xml" value="cd23a20e-6007-41ff-a979-39eaac57e224" />
+        </datasource-map>
+        <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/hibernate.cfg.xml" />
+      </configuration>
+    </facet>
+  </component>
+</module>
