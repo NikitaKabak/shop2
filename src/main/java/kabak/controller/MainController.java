@@ -211,7 +211,6 @@ public class MainController {
     @RequestMapping(value = "/shop/orderCreate", method = RequestMethod.POST)
     public ModelAndView createOrder(HttpSession session) {
 
-
         chekid(session);
         Integer idUser = (Integer) session.getAttribute("iduser");
         Map<Integer, Integer> map = (Map<Integer, Integer>) session.getAttribute("Basket");
@@ -236,9 +235,32 @@ public class MainController {
             modelAndView.setViewName("errorPage");
             return modelAndView;
         }
+    }
 
-
-
+    @RequestMapping(value = "/shop/registracion", method = RequestMethod.POST)
+    public ModelAndView goRegistracion(@RequestParam("name") String userName,
+                                       @RequestParam("password") String userPassword,
+                                       @RequestParam("email") String userEmail,
+                                       HttpSession session
+                                       ) {
+        chekid(session);
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            Integer idUser = userService.registration(userName,userPassword,userEmail);
+            User user = userService.getUser(idUser);
+            List<Order> orderList;
+            orderList = orderService.getOrderList(user);
+            modelAndView.addObject("iduser", idUser);
+            modelAndView.addObject("TestUser", user);
+            modelAndView.addObject("TestOrderList", orderList);
+            modelAndView.setViewName("homepageUsers");
+            return modelAndView;
+        } catch (Exception error) {
+            error.printStackTrace();
+            modelAndView.addObject("error", error);
+            modelAndView.setViewName("errorPage");
+            return modelAndView;
+        }
 
     }
 

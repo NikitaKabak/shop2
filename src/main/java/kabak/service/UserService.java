@@ -31,8 +31,17 @@ public class UserService {
 
         }
     }
+    //    @Transactional
+    public Integer registration(String name,String password, String email) throws Exception {
+        User newUser = new User();
+        newUser.setNameUser(name);
+        newUser.setPasswordUser(password);
+        newUser.setEmailUser(email);
+        Integer idNewUser = (Integer) hbmDaoImp.save(newUser);
+        return idNewUser;
+    }
 
-//    @Transactional
+
     public User getUser(Integer idUser)  throws Exception {
         User user;
         user = (User) hbmDaoImp.get(idUser);
