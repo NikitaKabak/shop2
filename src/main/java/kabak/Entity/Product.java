@@ -27,7 +27,6 @@ public class Product {
         this.idproduct = idproduct;
         this.nameproduct = nameproduct;
         this.idcategory = idcategory;
-       // this.idstatusproduct = idstatusproduct;
         this.quantity = quantity;
         this.price = price;
     }

@@ -10,30 +10,49 @@
 <html>
 <head>
     <title>HomePageUsers</title>
+    <script type="text/javascript">
+        function toggle_show(id) {
+            document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'block' : 'none';
+        }
+    </script>
 </head>
 
 <c:set var="testUser" value="${TestUser}"></c:set>
 <c:if test="${testUser != null}">
     <c:out value="User:"/><br>
-    <c:out value="${testUser}"></c:out> // test Ebtity <br>
+    <c:out value="${testUser}"></c:out> // test Entity <br>
+    <c:out value="${testUser.getUserRole().getRole()}"></c:out> // test EntityRole <br>
+    <c:out value="${testUser.getUserStatus().getUserstatus()}"></c:out> // test EntityStatus <br>
 </c:if>
 
-
+<input id="Show" type="button" value="Показать"/>
+<script>
+    Show.onclick = function () {
+        window.open("window.htm","win","height=300,width=300");
+    }
+</script>
 
 <c:set var="testOrderList" value="${TestOrderList}"></c:set>
-<c:if test="${testOrderList != null}">
-    <c:out value="TestOrderList:"/><br>
-    <c:forEach var="testOrderList" items="${testOrderList}">
-        <c:out value="${testOrderList}"></c:out> <br>
-        Order status:
-        <c:out value="${testOrderList.getOrgerStatus().getOrderstatus()}"></c:out><br>
-        <br>
-    </c:forEach>
-</c:if>
+<ul>
+    <li onClick="toggle_show('OrderList')" >Показать список заказов
+        <ul id="OrderList" style="display: none">
+            <li>
+                <c:if test="${testOrderList != null}">
+                    <c:out value="TestOrderList:"/><br>
+                    <c:forEach var="testOrderList" items="${testOrderList}">
+                        <c:out value="${testOrderList}"></c:out> <br>
+                        Order status:
+                        <c:out value="${testOrderList.getOrgerStatus().getOrderstatus()}"></c:out> <br>
+                        <br>
+                    </c:forEach>
+                </c:if>
+            </li>
 
+        </ul>
+    </li>
+</ul>
 <a href="/shop/catalog">Catalog</a>
 
 <body>
-
 </body>
 </html>
