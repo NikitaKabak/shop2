@@ -14,7 +14,7 @@
 <c:set var="error" value="${Error}"></c:set>
 <c:out value="${error}"/>
 <body>
-<form action="shop" method="post">login:<input name="login">
+<form action="/shop/login" method="post">login:<input name="name">
     password<input name="password">
     <input type="submit" name="nameButton" value="login"><br>
 </form>

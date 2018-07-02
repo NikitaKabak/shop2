@@ -12,4 +12,5 @@
     <import resource="hibernate-config.xml"/>
 
 
+
 </beans>

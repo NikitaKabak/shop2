@@ -48,7 +48,7 @@ public class MainController {
 
     //GET
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView gotoIndexPage(HttpSession session) {
         chekid(session);
         ModelAndView modelAndView = new ModelAndView();
@@ -153,13 +153,28 @@ public class MainController {
                     List<Order> orderList;
                     orderList = orderService.getOrderList(user);
 
+
                     session.setAttribute("iduser", iduserLog);
                     ModelAndView modelAndView = new ModelAndView();
                     modelAndView.addObject("iduser", iduserLog);
                     modelAndView.addObject("TestUser", user);
                     modelAndView.addObject("TestOrderList", orderList);
-                    modelAndView.setViewName("homepageUsers");
-                    return modelAndView;
+                    switch (user.getUserRole().getRole()) {
+                        case "admin":
+                            modelAndView.setViewName("adminHomePage");
+                            return modelAndView;
+                        case "guest":
+                            modelAndView.setViewName("guestHomePage");
+                            return modelAndView;
+                        case "user":
+                            modelAndView.setViewName("userHomePage");
+                            return modelAndView;
+                        default:
+                            modelAndView.setViewName("userHomePage");
+                            return modelAndView;
+                    }
+
+
                 } else {
                     String error = "Имя пользователя или пароль введены не верно";
                     ModelAndView modelAndView = new ModelAndView();
@@ -228,7 +243,7 @@ public class MainController {
             modelAndView.addObject("iduser", idUser);
             modelAndView.addObject("TestUser", user);
             modelAndView.addObject("TestOrderList", orderList);
-            modelAndView.setViewName("homepageUsers");
+            modelAndView.setViewName("userHomePage");
             return modelAndView;
         } catch (Exception error) {
             modelAndView.addObject("error", error);
@@ -242,18 +257,18 @@ public class MainController {
                                        @RequestParam("password") String userPassword,
                                        @RequestParam("email") String userEmail,
                                        HttpSession session
-                                       ) {
+    ) {
         chekid(session);
         ModelAndView modelAndView = new ModelAndView();
         try {
-            Integer idUser = userService.registration(userName,userPassword,userEmail);
+            Integer idUser = userService.registration(userName, userPassword, userEmail);
             User user = userService.getUser(idUser);
             List<Order> orderList;
             orderList = orderService.getOrderList(user);
             modelAndView.addObject("iduser", idUser);
             modelAndView.addObject("TestUser", user);
             modelAndView.addObject("TestOrderList", orderList);
-            modelAndView.setViewName("homepageUsers");
+            modelAndView.setViewName("userHomePage");
             return modelAndView;
         } catch (Exception error) {
             error.printStackTrace();

@@ -17,7 +17,13 @@ public class UserService {
         this.hbmDaoImp = userDAO;
     }
 
- //   @Transactional
+    public  User findByLastName(String userLastName) throws Exception {
+        User user;
+        user =  (User)hbmDaoImp.getWhereName("User", "nameUser", userLastName);
+        return  user;
+    }
+
+    //   @Transactional
     public User login(String nameUser, String passwordUser) throws Exception {
         User userLog;
         userLog = (User) hbmDaoImp.getWhereName("User", "nameUser", nameUser);

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                   http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                   http://www.springframework.org/schema/security
+                   http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+
+    <!--<http auto-config="true">
+        <intercept-url pattern="/admin**" access="ROLE_USER" />
+        <logout logout-success-url="/logout" logout-url="/j_spring_security_logout" />
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="mkyong" password="123456" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>-->
+
+
+    <beans:bean id="authenticationProvider"
+                class="kabak.service.LoginServiceImpl">
+        <beans:property name="passwordEncoder" ref="encoder"/>
+    </beans:bean>
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg type="int" value="12"/>
+    </beans:bean>
+
+
+        <beans:bean id="authManager"
+                    class="org.springframework.security.authentication.ProviderManager">
+            <beans:constructor-arg index="0">
+                <beans:list>
+                    <beans:ref bean="authenticationProvider"/>
+                </beans:list>
+            </beans:constructor-arg>
+        </beans:bean>
+
+
+    <http auto-config="true" authentication-manager-ref="authManager">
+        <intercept-url pattern="/**" access="permitAll" />
+        <intercept-url pattern="/get**" access="hasRole('manager')"/>
+        <form-login login-page="/" authentication-failure-url="/login"/>
+       <csrf disabled="true"/>
+    </http>
+
+
+
+</beans:beans>
