@@ -10,8 +10,20 @@
 <html>
 <head>
     <title>AdminHomePage</title>
+    <jsp:include page="logout.jsp"/>
 </head>
+
+<%--USER2--%>
+
+<c:set var="testUser2" value="${TestUser2}"></c:set>
+<c:if test="${testUser2 != null}">
+    <c:out value="User2:"/><br>
+    <c:out value="${testUser2}"></c:out> // test Entity <br>
+    <c:out value="${testUser2.getUserRole().getRole()}"></c:out> // test EntityRole <br>
+    <c:out value="${testUser2.getUserStatus().getUserstatus()}"></c:out> // test EntityStatus <br>
+</c:if>
 Hello Admin!!
+<%--USER--%>
 
 <c:set var="testUser" value="${TestUser}"></c:set>
 <c:if test="${testUser != null}">

@@ -3,6 +3,7 @@ package kabak.controller;
 import kabak.Entity.Order;
 import kabak.Entity.User;
 import kabak.service.OrderService;
+import kabak.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +25,9 @@ public class LoginController {
     private AuthenticationManager authManager;
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public LoginController(AuthenticationManager authManager) {
@@ -54,17 +58,24 @@ public class LoginController {
  @RequestMapping(value = "/", method = RequestMethod.GET)
  public ModelAndView login() {
      ModelAndView modelAndView = new ModelAndView();
-     modelAndView.setViewName("login");
+     /*modelAndView.setViewName("login");*/
+     modelAndView.setViewName("startpage");
      return modelAndView;
  }
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public ModelAndView userLogout() {
+    @RequestMapping(value = "/gotologin", method = RequestMethod.GET)
+    public ModelAndView goTologin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
     }
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public ModelAndView userLogout() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login.jsp");
+        return modelAndView;
+    }
 
-    @RequestMapping(value = "/authorization", method = RequestMethod.POST)
+   /* @RequestMapping(value = "/authorization", method = RequestMethod.POST)
     public ModelAndView userAuthorization(@RequestParam(value = "userLastName") String userLastName,
                                           @RequestParam(value = "userPassword") String userPassword,
                                           HttpSession session) {
@@ -75,11 +86,12 @@ public class LoginController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return new ModelAndView ("logout").addObject(student);
-    }
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    }*/
+
+    @RequestMapping(value = "/authorization", method = RequestMethod.POST)
     public ModelAndView userAuthorizationN(
-            @RequestParam(value = "username") String userLastName,
-            @RequestParam(value = "password") String userPassword,
+            @RequestParam(value = "userLastName") String userLastName,
+            @RequestParam(value = "userPassword") String userPassword,
             HttpSession session)    {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userLastName, userPassword);
         Authentication authentication = authManager.authenticate(authenticationToken);
@@ -89,30 +101,35 @@ public class LoginController {
         Integer iduserLog = user.getIdUser();
 
 
+        // TEST REpository
+
+        String userName = user.getNameUser();
+
         List<Order> orderList;
         try {
+         //   User user2 = userService.findByLastName(userName);
             orderList = orderService.getOrderList(user);
             session.setAttribute("iduser", iduserLog);
             ModelAndView modelAndView = new ModelAndView();
+         //   modelAndView.addObject("TestUser2", user2);
             modelAndView.addObject("iduser", iduserLog);
             modelAndView.addObject("TestUser", user);
             modelAndView.addObject("TestOrderList", orderList);
             switch (user.getUserRole().getRole()) {
                 case "admin":
-                    modelAndView.setViewName("logout");
-                  //  modelAndView.setViewName("adminHomePage");
+                    modelAndView.setViewName("adminHomePage");
                     return modelAndView;
                 case "guest":
-                    modelAndView.setViewName("logout");
-                //    modelAndView.setViewName("guestHomePage");
+                  //  modelAndView.setViewName("logout");
+                  modelAndView.setViewName("guestHomePage");
                     return modelAndView;
                 case "user":
-                    modelAndView.setViewName("logout");
-                 //   modelAndView.setViewName("userHomePage");
+                  //  modelAndView.setViewName("logout");
+                   modelAndView.setViewName("userHomePage");
                     return modelAndView;
                 default:
-                    modelAndView.setViewName("logout");
-                //    modelAndView.setViewName("userHomePage");
+                 //   modelAndView.setViewName("logout");
+                    modelAndView.setViewName("guestHomePage");
                     return modelAndView;
             }
         } catch (Exception ex) {

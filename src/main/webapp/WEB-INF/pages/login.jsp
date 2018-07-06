@@ -10,28 +10,22 @@
 <html>
 <head>
     <title>Title</title>
-
 </head>
-
-HELLO!
-
-
 <body>
 
 <c:url var="loginUrl" value="/authorization"/>
-<form action="/authorization" method="POST">
+<form action="${loginUrl}" method="POST">
     <table style="with: 50%">
         <tr>
             <td>Last Name</td>
             <td><input type="text" name="userLastName" required="true"/></td>
-        </tr>
-        <tr>
+
             <td>Password</td>
             <td><input type="password" name="userPassword" required="true"/></td>
+            <td><input type="submit" value="Login"/></td>
         </tr>
     </table>
-    <input type="submit" value="Login"/>
-</form>
 
+</form>
 </body>
 </html>

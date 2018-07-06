@@ -28,7 +28,7 @@ public class OrderService {
         this.hbmDaoImp = orderDAO;
     }
 
- //   @Transactional
+    //@Transactional
     public List<Order> getOrderList(User user)  throws Exception {
         List<Order> orderList = new ArrayList<>();
         List<Order> testOrderList;
@@ -40,7 +40,7 @@ public class OrderService {
         return orderList;
     }
 
- //   @Transactional
+    //@Transactional
     public void createOrder(User user, Map<Integer, Integer> map)  throws Exception {
 
         Date date = new Date();

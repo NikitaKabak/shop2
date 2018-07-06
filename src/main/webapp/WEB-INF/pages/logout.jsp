@@ -10,9 +10,6 @@
 <%@page session="true"%>
 <html>
 <body>
-<h1>Title : ${title}</h1>
-<h1>Message : ${message}</h1>
-
 <c:url value="/logout" var="logoutUrl" />
 
 <!-- csrt for log out-->
@@ -25,13 +22,13 @@
 </script>
 
 <c:if test="${pageContext.request.userPrincipal.name != null}">
-    <h2>
+    <h4>
         Welcome : ${pageContext.request.userPrincipal.name} | <a
             href="javascript:formSubmit()"> Logout</a>
-    </h2>
+    </h4>
 </c:if>
 
-
- <button type="submit" class="btn">Log out</button>
+<%--<a href="<c:url value="/gotologin" />" > Logout</a></h2>
+ <button type="submit" class="btn">Log out</button>--%>
 </body>
 </html>

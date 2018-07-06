@@ -8,20 +8,6 @@
                    http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 
-    <!--<http auto-config="true">
-        <intercept-url pattern="/admin**" access="ROLE_USER" />
-        <logout logout-success-url="/logout" logout-url="/j_spring_security_logout" />
-    </http>
-
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="mkyong" password="123456" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>-->
-
-
     <beans:bean id="authenticationProvider"
                 class="kabak.service.LoginServiceImpl">
         <beans:property name="passwordEncoder" ref="encoder"/>
@@ -40,14 +26,20 @@
             </beans:constructor-arg>
         </beans:bean>
 
+    <beans:bean id="errorAuthentication"
+                class="kabak.service.ErrorAuthenticationService">
+    </beans:bean>
 
-    <http auto-config="true" authentication-manager-ref="authManager">
-        <intercept-url pattern="/**" access="permitAll" />
+
+    <http auto-config="true" authentication-manager-ref="authManager" entry-point-ref="errorAuthentication">
+        <intercept-url pattern="/**" access="permitAll"  />
+        <intercept-url pattern="/log**" access="hasRole('manager')" />
         <intercept-url pattern="/get**" access="hasRole('manager')"/>
-        <form-login login-page="/" authentication-failure-url="/login"/>
+        <form-login login-page="/" authentication-failure-url="/login" />
+
+
+
        <csrf disabled="true"/>
     </http>
-
-
 
 </beans:beans>

@@ -3,6 +3,7 @@ package kabak.service;
 
 import kabak.DAO.HbmDaoImp;
 import kabak.Entity.User;
+import kabak.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,18 +13,36 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private HbmDaoImp hbmDaoImp;
 
+    private UserRepository userRepository;
+
+
+/*  SpDATA
+    @Autowired
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }*/
+
+
     @Autowired
     public UserService(HbmDaoImp userDAO){
         this.hbmDaoImp = userDAO;
     }
 
-    public  User findByLastName(String userLastName) throws Exception {
+   public  User findByLastName(String userLastName) throws Exception {
+       User user;
+
+    //SpDATA   user = userRepository.findByName(userLastName);
+       user =  (User)hbmDaoImp.getWhereName("User", "nameUser", userLastName);
+       return  user;
+   }
+
+    /*public  User findByLastName(String userLastName) throws Exception {
         User user;
         user =  (User)hbmDaoImp.getWhereName("User", "nameUser", userLastName);
         return  user;
-    }
+    }*/
 
-    //   @Transactional
+    //@Transactional
     public User login(String nameUser, String passwordUser) throws Exception {
         User userLog;
         userLog = (User) hbmDaoImp.getWhereName("User", "nameUser", nameUser);
@@ -37,7 +56,7 @@ public class UserService {
 
         }
     }
-    //    @Transactional
+    //@Transactional
     public Integer registration(String name,String password, String email) throws Exception {
         User newUser = new User();
         newUser.setNameUser(name);

@@ -10,11 +10,8 @@
 <html>
 <head>
     <title>HomePageUsers</title>
-    <script type="text/javascript">
-        function toggle_show(id) {
-            document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'block' : 'none';
-        }
-    </script>
+    <jsp:include page="logout.jsp"/>
+
 </head>
 
 <c:set var="testUser" value="${TestUser}"></c:set>
@@ -24,14 +21,19 @@
     <c:out value="${testUser.getUserRole().getRole()}"></c:out> // test EntityRole <br>
     <c:out value="${testUser.getUserStatus().getUserstatus()}"></c:out> // test EntityStatus <br>
 </c:if>
-
+<%--
 <input id="Show" type="button" value="Показать"/>
 <script>
     Show.onclick = function () {
         window.open("window.htm","win","height=300,width=300");
     }
+</script>--%>
+<%--OrderList--%>
+<script type="text/javascript">
+    function toggle_show(id) {
+        document.getElementById(id).style.display = document.getElementById(id).style.display == 'none' ? 'block' : 'none';
+    }
 </script>
-
 <c:set var="testOrderList" value="${TestOrderList}"></c:set>
 <ul>
     <li onClick="toggle_show('OrderList')" >Показать список заказов
