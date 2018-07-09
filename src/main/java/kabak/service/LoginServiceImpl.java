@@ -21,6 +21,7 @@ public class LoginServiceImpl implements AuthenticationProvider
 {
     private BCryptPasswordEncoder passwordEncoder;
     private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");
+    private final static GrantedAuthority GRANTED_AUTHORITY_ADMIN = new SimpleGrantedAuthority("ROLE_ADMIN");
 
     @Autowired
     private UserService userService;
@@ -50,9 +51,13 @@ public class LoginServiceImpl implements AuthenticationProvider
                     throw new BadCredentialsException("Invalid Password");
                 } else {
                     grantedAuthorities.add(GRANTED_AUTHORITY_MANAGER);
+                   /* grantedAuthorities.add(GRANTED_AUTHORITY_MANAGER);*/
+                   /* grantedAuthorities.set(0,GRANTED_AUTHORITY_ADMIN);*/
                     userDetails = new User(userLastName, userPassword, true, true, true, true, grantedAuthorities);
                     token = new UsernamePasswordAuthenticationToken(userDetails, userPassword, grantedAuthorities);
                     token.setDetails(user);
+                    /*token.getAuthorities().add(GRANTED_AUTHORITY_ADMIN);*/
+
                 }
             } else {
                 throw new UsernameNotFoundException("Student does not registered");

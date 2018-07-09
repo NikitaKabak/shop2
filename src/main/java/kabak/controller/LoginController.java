@@ -100,8 +100,8 @@ public class LoginController {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userLastName, userPassword);
         Authentication authentication = authManager.authenticate(authenticationToken);
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>) authentication.getAuthorities();
-       /* grantedAuthorities.add(GRANTED_AUTHORITY_ADMIN);
-        ((List<GrantedAuthority>) authentication.getAuthorities()).set(1,GRANTED_AUTHORITY_ADMIN);
+       /* grantedAuthorities.add(GRANTED_AUTHORITY_ADMIN);*/
+       /* ((List<GrantedAuthority>) authentication.getAuthorities()).set(0,GRANTED_AUTHORITY_ADMIN);
         List<GrantedAuthority> list = ((List<GrantedAuthority>) authentication.getAuthorities());*/
         User user = (User) authentication.getDetails();
 
