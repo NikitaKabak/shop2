@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ import java.util.List;
 public class LoginController {
 
     private AuthenticationManager authManager;
+    private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");
+    private final static GrantedAuthority GRANTED_AUTHORITY_ADMIN = new SimpleGrantedAuthority("ROLE_ADMIN");
+    /*private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");*/
     @Autowired
     private OrderService orderService;
 
@@ -96,7 +100,11 @@ public class LoginController {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userLastName, userPassword);
         Authentication authentication = authManager.authenticate(authenticationToken);
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>) authentication.getAuthorities();
+       /* grantedAuthorities.add(GRANTED_AUTHORITY_ADMIN);
+        ((List<GrantedAuthority>) authentication.getAuthorities()).set(1,GRANTED_AUTHORITY_ADMIN);
+        List<GrantedAuthority> list = ((List<GrantedAuthority>) authentication.getAuthorities());*/
         User user = (User) authentication.getDetails();
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Integer iduserLog = user.getIdUser();
 
@@ -125,6 +133,8 @@ public class LoginController {
                     return modelAndView;
                 case "user":
                   //  modelAndView.setViewName("logout");
+
+
                    modelAndView.setViewName("userHomePage");
                     return modelAndView;
                 default:

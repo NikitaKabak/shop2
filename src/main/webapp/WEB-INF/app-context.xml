@@ -9,7 +9,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="kabak.service"/>
-    <!--<import resource="hibernate-configSpDATA.xml"/>-->
+    <import resource="hibernate-configSpDATA.xml"/>
     <import resource="hibernate-configSp.xml"/>
 
 

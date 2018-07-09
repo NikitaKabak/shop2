@@ -20,7 +20,7 @@ import java.util.List;
 public class LoginServiceImpl implements AuthenticationProvider
 {
     private BCryptPasswordEncoder passwordEncoder;
-    private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("manager");
+    private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");
 
     @Autowired
     private UserService userService;
