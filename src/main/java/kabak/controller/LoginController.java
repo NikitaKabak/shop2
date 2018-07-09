@@ -100,9 +100,6 @@ public class LoginController {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userLastName, userPassword);
         Authentication authentication = authManager.authenticate(authenticationToken);
         List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>) authentication.getAuthorities();
-       /* grantedAuthorities.add(GRANTED_AUTHORITY_ADMIN);*/
-       /* ((List<GrantedAuthority>) authentication.getAuthorities()).set(0,GRANTED_AUTHORITY_ADMIN);
-        List<GrantedAuthority> list = ((List<GrantedAuthority>) authentication.getAuthorities());*/
         User user = (User) authentication.getDetails();
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -128,17 +125,12 @@ public class LoginController {
                     modelAndView.setViewName("adminHomePage");
                     return modelAndView;
                 case "guest":
-                  //  modelAndView.setViewName("logout");
-                  modelAndView.setViewName("guestHomePage");
+                   modelAndView.setViewName("guestHomePage");
                     return modelAndView;
                 case "user":
-                  //  modelAndView.setViewName("logout");
-
-
                    modelAndView.setViewName("userHomePage");
                     return modelAndView;
                 default:
-                 //   modelAndView.setViewName("logout");
                     modelAndView.setViewName("guestHomePage");
                     return modelAndView;
             }

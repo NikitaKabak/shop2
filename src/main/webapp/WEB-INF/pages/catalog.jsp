@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Catalog</title>
+    <jsp:include page="logout.jsp"/>
 </head>
 
 

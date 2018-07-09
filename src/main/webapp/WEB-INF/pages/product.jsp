@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Product</title>
+    <jsp:include page="logout.jsp"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </head>
 <body>
 
@@ -32,7 +34,9 @@
     </dl>
     <form action="/shop/product" method="post">Введитете количество товара которое вы хотите приобрести <input name="byqantity">
         <input type="hidden" name="idProduct" value="${product.getIdproduct()}">
-     <input type="submit" name="nameButton" value="addInBacket" ></form>
+        <input type="submit" name="nameButton" value="addInBacket" >
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 
 </body>
 </html>

@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>GuestHomePage</title>
+    <jsp:include page="logout.jsp"/>
 </head>
 Hello Guest!!
 

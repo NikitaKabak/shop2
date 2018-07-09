@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 public class ProductService {
@@ -21,5 +23,10 @@ public class ProductService {
         Product product;
         product = (Product) hbmDaoImp.get(idproduct);
         return product;
+    }
+    public List<Product> getAllProducts()  throws Exception {
+        List<Product> productList;
+        productList = (List<Product>) hbmDaoImp.getAll();
+        return productList;
     }
 }

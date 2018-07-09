@@ -34,18 +34,17 @@
     <http auto-config="true" authentication-manager-ref="authManager" entry-point-ref="errorAuthentication">
        <!-- <intercept-url pattern="/**" access="permitAll"  />-->
         <intercept-url pattern="/" access="permitAll"  />
-        <intercept-url pattern="/login" access="permitAll"  />
+        <intercept-url pattern="/log**" access="permitAll"  />
         <intercept-url pattern="/shop/catalog" access="permitAll"  />
         <intercept-url pattern="/shop/registracion" access="permitAll"  />
         <intercept-url pattern="/authorization" access="permitAll"/>
         <intercept-url pattern="/shop/product" method="GET" access="permitAll"  />
-        <intercept-url pattern="/shop/**" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/logout" access="hasRole('ROLE_ADMIN')"  />
+       <!-- <intercept-url pattern="/shop/**" access="hasRole('ROLE_USER')"/>-->
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"  />
+        <intercept-url pattern="/shop/**" access="isAuthenticated()"/>
         <form-login login-page="/" authentication-failure-url="/login" />
 
-
-
-       <csrf disabled="true"/>
+      <!-- <csrf disabled="true"/>-->
     </http>
 
 </beans:beans>

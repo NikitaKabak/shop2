@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Basket</title>
+    <jsp:include page="logout.jsp"/>
 </head>
 
 <h2>MyBacket</h2>
@@ -22,6 +23,7 @@
 
 <form action="/shop/orderCreate" method="post">
     <input type="submit" name="nameButton" value="Create" >
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 </body>
 </html>

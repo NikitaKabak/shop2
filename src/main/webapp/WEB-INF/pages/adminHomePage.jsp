@@ -32,7 +32,25 @@ Hello Admin!!
     <c:out value="${testUser.getUserRole().getRole()}"></c:out> // test EntityRole <br>
     <c:out value="${testUser.getUserStatus().getUserstatus()}"></c:out> // test EntityStatus <br>
 </c:if>
-
+<a href="/shop/catalog">Catalog</a>
+<input id="ShowUsers" type="button" value="Показать Пользователей"/>
+<script>
+    ShowUsers.onclick = function () {
+        window.open("/admin/showAllUsers");
+    }
+</script>
+<input id="ShowProducts" type="button" value="Показать Товары"/>
+<script>
+    ShowProducts.onclick = function () {
+        window.open("/admin/showAllProducts");
+    }
+</script>
+<input id="ShowOrders" type="button" value="Показать Заказы"/>
+<script>
+    ShowOrders.onclick = function () {
+        window.open("/admin/showAllOrders");
+    }
+</script>
 <body>
 
 </body>

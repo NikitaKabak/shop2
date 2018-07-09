@@ -10,10 +10,12 @@
 <%@page session="true"%>
 <html>
 <body>
+
 <c:url value="/logout" var="logoutUrl" />
 
-<!-- csrt for log out-->
+
 <form action="${logoutUrl}" method="post" id="logoutForm">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 <script>
     function formSubmit() {
@@ -28,7 +30,6 @@
     </h4>
 </c:if>
 
-<%--<a href="<c:url value="/gotologin" />" > Logout</a></h2>
- <button type="submit" class="btn">Log out</button>--%>
+
 </body>
 </html>

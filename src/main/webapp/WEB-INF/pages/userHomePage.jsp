@@ -11,6 +11,7 @@
 <head>
     <title>HomePageUsers</title>
     <jsp:include page="logout.jsp"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 </head>
 
@@ -21,13 +22,7 @@
     <c:out value="${testUser.getUserRole().getRole()}"></c:out> // test EntityRole <br>
     <c:out value="${testUser.getUserStatus().getUserstatus()}"></c:out> // test EntityStatus <br>
 </c:if>
-<%--
-<input id="Show" type="button" value="Показать"/>
-<script>
-    Show.onclick = function () {
-        window.open("window.htm","win","height=300,width=300");
-    }
-</script>--%>
+
 <%--OrderList--%>
 <script type="text/javascript">
     function toggle_show(id) {

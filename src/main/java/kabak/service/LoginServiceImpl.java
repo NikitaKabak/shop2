@@ -20,8 +20,9 @@ import java.util.List;
 public class LoginServiceImpl implements AuthenticationProvider
 {
     private BCryptPasswordEncoder passwordEncoder;
-    private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");
+    private final static GrantedAuthority GRANTED_AUTHORITY_USER = new SimpleGrantedAuthority("ROLE_USER");
     private final static GrantedAuthority GRANTED_AUTHORITY_ADMIN = new SimpleGrantedAuthority("ROLE_ADMIN");
+    private final static GrantedAuthority GRANTED_AUTHORITY_GUEST = new SimpleGrantedAuthority("ROLE_GUEST");
 
     @Autowired
     private UserService userService;
@@ -50,14 +51,23 @@ public class LoginServiceImpl implements AuthenticationProvider
                 if (!userPassword.equals(user.getPasswordUser())) {
                     throw new BadCredentialsException("Invalid Password");
                 } else {
-                    grantedAuthorities.add(GRANTED_AUTHORITY_MANAGER);
-                   /* grantedAuthorities.add(GRANTED_AUTHORITY_MANAGER);*/
-                   /* grantedAuthorities.set(0,GRANTED_AUTHORITY_ADMIN);*/
+                    switch (user.getUserRole().getRole()) {
+                        case "admin":
+                            grantedAuthorities.add(GRANTED_AUTHORITY_ADMIN);
+                            break;
+                        case "guest":
+                            grantedAuthorities.add(GRANTED_AUTHORITY_GUEST);
+                            break;
+                        case "user":
+                            grantedAuthorities.add(GRANTED_AUTHORITY_USER);
+                            break;
+                        default:
+                            grantedAuthorities.add(GRANTED_AUTHORITY_GUEST);
+                            break;
+                    }
                     userDetails = new User(userLastName, userPassword, true, true, true, true, grantedAuthorities);
                     token = new UsernamePasswordAuthenticationToken(userDetails, userPassword, grantedAuthorities);
                     token.setDetails(user);
-                    /*token.getAuthorities().add(GRANTED_AUTHORITY_ADMIN);*/
-
                 }
             } else {
                 throw new UsernameNotFoundException("Student does not registered");
@@ -65,8 +75,6 @@ public class LoginServiceImpl implements AuthenticationProvider
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return token;
     }
 

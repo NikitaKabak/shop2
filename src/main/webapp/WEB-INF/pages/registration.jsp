@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Registration</title>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </head>
 <body>
 <h2>Registration</h2>

@@ -71,10 +71,14 @@ public class OrderService {
         order.setListBasket(basketList);
         hbmDaoImp.save(order);
     }
-
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public List<Order> getAllOrders()  throws Exception {
+        List<Order> orderList;
+        orderList = (List<Order>) hbmDaoImp.getAll();
+        return orderList;
     }
+
+
+
 
    /* public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         switch (request.getParameter("nameButton")) {
