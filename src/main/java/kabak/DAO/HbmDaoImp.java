@@ -36,57 +36,34 @@ public class HbmDaoImp<T, PK> implements HbmDao<T, PK> {
 
     @Override
     public void create(T t) throws Exception {
-
         Session session = sessionFactory.getCurrentSession();
-       // Transaction transaction = session.beginTransaction();
-
-
         session.persist(t);
-       // transaction.commit();
     }
 
     @Override
     public Serializable save(T t) throws Exception {
-
         Session session = sessionFactory.getCurrentSession();
-     //   Transaction transaction = session.beginTransaction();
-
         Serializable id;
         id = session.save(t);
-      //  transaction.commit();
-
         return id;
     }
 
     @Override
     public void update(T t)  throws Exception {
-
         Session session = sessionFactory.getCurrentSession();
-   //     Transaction transaction = session.beginTransaction();
         session.update(t);
-    //    transaction.commit();
-
-
-    }
+     }
 
     @Override
     public void saveOrUpdate(T t)  throws Exception{
-
         Session session = sessionFactory.getCurrentSession();
-    //    Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(t);
-     //   transaction.commit();
-
     }
 
     @Override
     public void delete(T t)  throws Exception {
-
         Session session = sessionFactory.getCurrentSession();
-   //     Transaction transaction = session.beginTransaction();
         session.delete(session.merge(t));
-     //   transaction.commit();
-
     }
 
     public void remove(T t)  throws Exception {
@@ -188,7 +165,6 @@ public class HbmDaoImp<T, PK> implements HbmDao<T, PK> {
         List<T> list = null;
 
         Session session = sessionFactory.getCurrentSession();
-     //   Transaction transaction = session.beginTransaction();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(clas);
@@ -197,7 +173,6 @@ public class HbmDaoImp<T, PK> implements HbmDao<T, PK> {
 
 
         list = session.createQuery(query).getResultList();
-    //    transaction.commit();
 
         return list;
     }

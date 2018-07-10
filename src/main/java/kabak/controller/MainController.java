@@ -276,60 +276,7 @@ public class MainController {
             modelAndView.setViewName("errorPage");
             return modelAndView;
         }
-
     }
-
-
 }
 
-/*
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
-            case "/shop/order":
-                OrderSrv orderSrv = new OrderSrv();
-                orderSrv.doGet(request, response);
-                break;
-
-            default:
-                request.getRequestDispatcher("/WEB-INF/pages/notFound.jsp").forward(request, response);
-                break;
-        }
-
-    }
-
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-            case "/shop":
-                FirstServlet firstServlet = new FirstServlet();
-                firstServlet.doPost(request, response);
-                break;
-            case "/shop/catalog":
-                CatalogSrv catalogSrv = new CatalogSrv();
-                catalogSrv.doPost(request, response);
-                break;
-            case "/shop/order":
-                OrderSrv orderSrv = new OrderSrv();
-                orderSrv.doPost(request, response);
-                break;
-            case "/shop/test":
-                TestSrv testSrv = new TestSrv();
-                testSrv.doPost(request, response);
-                break;
-            case "/shop/registracion":
-                RegService regService = new RegService();
-                regService.registracion(request, response);
-                break;
-
-            case "/shop/login":
-                LoginService loginService = new LoginService();
-                loginService.login(request, response);
-                break;
-            default:
-                request.getRequestDispatcher("/WEB-INF/pages/notFound.jsp").forward(request, response);
-                break;
-        }
-    }*/

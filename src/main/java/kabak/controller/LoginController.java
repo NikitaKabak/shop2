@@ -38,27 +38,7 @@ public class LoginController {
         this.authManager = authManager;
     }
 
- /*   @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-    public ModelAndView welcomePage() {
 
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Hello World");
-        model.addObject("message", "This is welcome page!");
-        model.setViewName("hello");
-        return model;
-    }
-
-    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
-    public ModelAndView adminPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Hello World");
-        model.addObject("message", "This is protected page!");
-        model.setViewName("admin");
-
-        return model;
-
-    }*/
  @RequestMapping(value = "/", method = RequestMethod.GET)
  public ModelAndView login() {
      ModelAndView modelAndView = new ModelAndView();
@@ -78,19 +58,6 @@ public class LoginController {
         modelAndView.setViewName("login.jsp");
         return modelAndView;
     }
-
-   /* @RequestMapping(value = "/authorization", method = RequestMethod.POST)
-    public ModelAndView userAuthorization(@RequestParam(value = "userLastName") String userLastName,
-                                          @RequestParam(value = "userPassword") String userPassword,
-                                          HttpSession session) {
-        Authentication authenticationToken = new UsernamePasswordAuthenticationToken(userLastName, userPassword);
-        Authentication authentication = authManager.authenticate(authenticationToken);
-        List<GrantedAuthority> grantedAuthorities = (List<GrantedAuthority>) authentication.getAuthorities();
-        User student = (User) authentication.getDetails();
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return new ModelAndView ("logout").addObject(student);
-    }*/
 
     @RequestMapping(value = "/authorization", method = RequestMethod.POST)
     public ModelAndView userAuthorizationN(
