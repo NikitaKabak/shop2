@@ -35,7 +35,6 @@
   </servlet-mapping>
 
   <welcome-file-list>
-    <!--<welcome-file>pages/login.jsp</welcome-file>-->
     <welcome-file>pages/startpage.jsp</welcome-file>
   </welcome-file-list>
    <!--Spring Security -->

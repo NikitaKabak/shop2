@@ -36,7 +36,7 @@ public class MainController {
         this.catalogService = catalogService;
     }
 
-    private void chekid(HttpSession session) {
+    /*private void chekid(HttpSession session) {
 
         if (session.getAttribute("iduser") != null) {
             iduser = (Integer) session.getAttribute("iduser");
@@ -44,13 +44,13 @@ public class MainController {
             iduser = 0;
             session.setAttribute("iduser", iduser);
         }
-    }
+    }*/
 
     //GET
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView gotoIndexPage(HttpSession session) {
-        chekid(session);
+        /*chekid(session);*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         return modelAndView;
@@ -58,7 +58,7 @@ public class MainController {
 
     @RequestMapping(value = "/shop", method = RequestMethod.GET)
     public ModelAndView gotoStartPage(HttpSession session) {
-        chekid(session);
+        /*chekid(session);*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("startpage");
         return modelAndView;
@@ -66,7 +66,7 @@ public class MainController {
 
     @RequestMapping(value = "/shop/registracion", method = RequestMethod.GET)
     public ModelAndView gotoRegistracion(HttpSession session) {
-        chekid(session);
+        /*chekid(session);*/
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("registration");
         return modelAndView;
@@ -74,7 +74,7 @@ public class MainController {
 
     @RequestMapping(value = "/shop/catalog", method = RequestMethod.GET)
     public ModelAndView gotoCatalog(HttpSession session) {
-        chekid(session);
+        /*chekid(session);*/
         List<Product> catalog = null;
         ModelAndView modelAndView = new ModelAndView();
 
@@ -96,7 +96,7 @@ public class MainController {
     public ModelAndView goToProduct(@RequestParam("idproduct") Integer idproduct,
                                     HttpSession session) {
 
-        chekid(session);
+        /*chekid(session);*/
         Product product = null;
         ModelAndView modelAndView = new ModelAndView();
 
@@ -117,7 +117,7 @@ public class MainController {
     @RequestMapping(value = "/shop/basket", method = RequestMethod.GET)
     public ModelAndView goToBasket(HttpSession session) {
 
-        chekid(session);
+        /*chekid(session);*/
         Map<String, Integer> basketList;
         basketList = (Map<String, Integer>) session.getAttribute("BasketList");
 
@@ -196,7 +196,7 @@ public class MainController {
                                     @RequestParam("byqantity") Integer qantityByProduct,
                                     HttpSession session) {
 
-        chekid(session);
+        /*chekid(session);*/
         Map<Integer, Integer> map = (Map<Integer, Integer>) session.getAttribute("Basket");
         Map<Integer, Integer> basket;
         Map<String, Integer> basketList;
@@ -226,7 +226,7 @@ public class MainController {
     @RequestMapping(value = "/shop/orderCreate", method = RequestMethod.POST)
     public ModelAndView createOrder(HttpSession session) {
 
-        chekid(session);
+        /*chekid(session);*/
         Integer idUser = (Integer) session.getAttribute("iduser");
         Map<Integer, Integer> map = (Map<Integer, Integer>) session.getAttribute("Basket");
         ModelAndView modelAndView = new ModelAndView();
@@ -258,7 +258,7 @@ public class MainController {
                                        @RequestParam("email") String userEmail,
                                        HttpSession session
     ) {
-        chekid(session);
+        /*chekid(session);*/
         ModelAndView modelAndView = new ModelAndView();
         try {
             Integer idUser = userService.registration(userName, userPassword, userEmail);

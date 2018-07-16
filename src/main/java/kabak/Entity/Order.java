@@ -57,7 +57,6 @@ public class Order {
     }
 
     public List<Basket> getListBasket() {
-
         return listBasket;
     }
 

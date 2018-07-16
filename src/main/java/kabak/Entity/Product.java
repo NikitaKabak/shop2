@@ -71,11 +71,7 @@ public class Product {
         this.price = price;
     }
 
-    public Productstatus getProductstatus() {
-
-
-        return productstatus;
-    }
+    public Productstatus getProductstatus() { return productstatus;  }
 
     public void setProductstatus(Productstatus productstatus) {
         this.productstatus = productstatus;

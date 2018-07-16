@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "backet")
 public class Basket {
-    public Basket(){
-    }
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +23,9 @@ public class Basket {
     @ManyToOne
     @JoinColumn (name = "idproduct")
     private Product product;
+
+    public Basket(){
+    }
 
     public Integer getIdbacket() {
         return idbacket;

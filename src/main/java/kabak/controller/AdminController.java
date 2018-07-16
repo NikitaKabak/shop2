@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -27,8 +26,8 @@ public class AdminController {
     private OrderService orderService;
     @Autowired
     private ProductService productService;
-    @Autowired
-    private BasketService basketService;
+   /* @Autowired
+    private BasketService basketService;*/
 
     public AdminController() {
     }

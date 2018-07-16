@@ -18,10 +18,6 @@ public class Orderstatus {
     public Orderstatus() {
     }
 
-    public Orderstatus(Integer idorderstatus) {
-        this.idorderstatus = idorderstatus;
-    }
-
     public Orderstatus(Integer idorderstatus, String orderstatus) {
         this.idorderstatus = idorderstatus;
         this.orderstatus = orderstatus;

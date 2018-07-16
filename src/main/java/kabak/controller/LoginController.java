@@ -27,6 +27,7 @@ public class LoginController {
     private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");
     private final static GrantedAuthority GRANTED_AUTHORITY_ADMIN = new SimpleGrantedAuthority("ROLE_ADMIN");
     /*private final static GrantedAuthority GRANTED_AUTHORITY_MANAGER = new SimpleGrantedAuthority("ROLE_USER");*/
+
     @Autowired
     private OrderService orderService;
 
@@ -46,12 +47,12 @@ public class LoginController {
      modelAndView.setViewName("startpage");
      return modelAndView;
  }
-    @RequestMapping(value = "/gotologin", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/gotologin", method = RequestMethod.GET)
     public ModelAndView goTologin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
-    }
+    }*/
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public ModelAndView userLogout() {
         ModelAndView modelAndView = new ModelAndView();
@@ -75,7 +76,7 @@ public class LoginController {
 
         // TEST REpository
 
-        String userName = user.getNameUser();
+        /*String userName = user.getNameUser();*/
 
         List<Order> orderList;
         try {
